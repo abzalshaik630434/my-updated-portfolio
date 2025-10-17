@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abzal — Portfolio</title>
+  <meta name="description" content="Portfolio of Abzal — Embedded systems developer & C programmer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #071029;
+      --accent: #7c3aed;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --text: #e6eef8;
+      --muted: #9fb0cd;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent), linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      line-height:1.5;
+    }
+
+    .wrap{max-width:1100px;margin:48px auto;padding:32px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .name{font-weight:800;font-family:'Space Grotesk';letter-spacing:0.4px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:var(--text)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;margin-top:28px}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:18px;backdrop-filter: blur(6px);box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .intro{font-size:18px;color:var(--muted);margin-bottom:10px}
+    h1{margin:0;font-size:36px}
+    .roles{display:flex;gap:8px;margin:12px 0}
+    .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px;border:1px solid rgba(255,255,255,0.02)}
+    .cta{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;box-shadow:0 8px 20px rgba(124,58,237,0.16)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+
+    .profile-card{background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:18px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(255,255,255,0.03)}
+    .profile-img{width:180px;height:180px;border-radius:20px;overflow:hidden;box-shadow:0 14px 40px rgba(2,6,23,0.7);border:4px solid rgba(255,255,255,0.02)}
+    .profile-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .socials{display:flex;gap:10px}
+    .social-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:var(--muted);font-weight:700}
+
+    section{margin-top:38px}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .section-title h3{margin:0;font-size:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--glass-2);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);min-height:120px}
+    .project{display:flex;flex-direction:column;gap:10px}
+    .project .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{padding:8px 12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);font-weight:700}
+
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    textarea{min-height:140px}
+
+    footer{margin-top:48px;padding:20px;border-radius:12px;text-align:center;color:var(--muted)}
+
+    .fade-in{opacity:0;transform:translateY(14px);transition:all 700ms cubic-bezier(.2,.9,.3,1)}
+    .fade-in.show{opacity:1;transform:none}
+    .float{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr;}
+      .profile-img{width:140px;height:140px}
+      .contact-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start}
+      nav{margin-top:10px}
+      .wrap{padding:20px}
+    }
+
+    a:focus, button:focus, input:focus, textarea:focus{outline:2px solid rgba(124,58,237,0.14);outline-offset:2px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"><img src="abzal.jpg" alt="Abzal logo"></div>
+        <div>
+          <div class="name">Shaik Abzal</div>
+          <div style="font-size:13px;color:var(--muted)">Embedded Systems • C & C++ • RTOS</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card fade-in" id="heroCard">
+          <div class="intro">Hello, I'm</div>
+          <h1 id="typed">Abzal — Embedded Developer</h1>
+          <div class="roles">
+            <div class="chip">C & C++</div>
+            <div class="chip">RTOS</div>
+            <div class="chip">ESP32 / STM32</div>
+            <div class="chip">IoT</div>
+          </div>
+          <p style="color:var(--muted);margin-top:8px">I build reliable embedded systems with clean C, secure IoT integrations, and real-time firmware.</p>
+          <div class="cta">
+            <button class="btn btn-primary" onclick="downloadResume()">Download Resume</button>
+            <a class="btn btn-ghost" href="#contact">Hire Me</a>
+          </div>
+        </div>
+
+        <aside class="profile-card fade-in float" id="profileCard">
+          <div class="profile-img"><img src="abzal.jpg" alt="Abzal photo"></div>
+          <div style="text-align:center">
+            <div style="font-weight:700">Shaik Abzal</div>
+            <div style="font-size:13px;color:var(--muted)">Embedded Systems Developer</div>
+          </div>
+          <div class="socials">
+            <a class="social-link" href="https://github.com/abzalshaik630434" target="_blank" rel="noopener noreferrer">GH</a>
+            <a class="social-link" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">IN</a>
+            <a class="social-link" href="mailto:abzalshaik630434@gmail.com" target="_blank" rel="noopener noreferrer">✉</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="fade-in">
+        <div class="section-title">
+          <h3>About Me</h3>
+          <div style="flex:1;border-bottom:1px dashed rgba(255,255,255,0.03)"></div>
+        </div>
+        <div class="hero-card">
+          <p style="color:var(--muted);margin:0">I'm a passionate embedded systems developer experienced with microcontrollers (ESP32/STM32/PIC), RTOS, and IoT projects. I design, test, and deploy firmware with a strong emphasis on reliability and low-power design.</p>
+        </div>
+      </section>
+
+      <section id="projects" class="fade-in">
+        <div class="section-title">
+          <h3>Highlighted Projects</h3>
+          <div style="flex:1;border-bottom:1px dashed rgba(255,255,255,0.03)"></div>
+        </div>
+        <div class="grid">
+          <div class="card project">
+            <div style="display:flex;justify-content:space-between;align-items:center"><strong>Fingerprint Smart Lock</strong><span class="tag">RTOS</span></div>
+            <div style="color:var(--muted);font-size:14px">Fingerprint authentication, solenoid control, MQTT alerts, LCD feedback.</div>
+            <div class="tags"><span class="tag">ESP32</span><span class="tag">R307</span><span class="tag">MQTT</span></div>
+          </div>
+          <div class="card project">
+            <div style="display:flex;justify-content:space-between;align-items:center"><strong>Smart Water System</strong><span class="tag">Automation</span></div>
+            <div style="color:var(--muted);font-size:14px">Water-level detection, automatic pump control, remote alerting.</div>
+            <div class="tags"><span class="tag">Sensors</span><span class="tag">ESP32</span></div>
+          </div>
+          <div class="card project">
+            <div style="display:flex;justify-content:space-between;align-items:center"><strong>RTOS Task Scheduler</strong><span class="tag">Kernel</span></div>
+            <div style="color:var(--muted);font-size:14px">Custom RTOS tasks demo — mutexes, queues, task priorities.</div>
+            <div class="tags"><span class="tag">FreeRTOS</span><span class="tag">C</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="fade-in">
+        <div class="section-title"><h3>Skills</h3><div style="flex:1;border-bottom:1px dashed rgba(255,255,255,0.03)"></div></div>
+        <div class="card">
+          <div class="skills">
+            <div class="skill">C / C++</div>
+            <div class="skill">RTOS (FreeRTOS)</div>
+            <div class="skill">ESP32 / STM32</div>
+            <div class="skill">Embedded Linux</div>
+            <div class="skill">MQTT / IoT</div>
+            <div class="skill">Circuit Design</div>
+            <div class="skill">Git & CI</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="fade-in">
+        <div class="section-title"><h3>Contact</h3><div style="flex:1;border-bottom:1px dashed rgba(255,255,255,0.03)"></div></div>
+        <div class="contact-grid">
+          <!-- Formspree form -->
+          <form class="card" action="https://formspree.io/f/xjkalyqg" method="POST">
+            <label style="font-weight:700">Message</label>
+            <input class="input" name="name" placeholder="Your name" required />
+            <input class="input" name="email" type="email" placeholder="Your email" required />
+            <textarea name="message" placeholder="How can I help?" required></textarea>
+            <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
+              <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+          </form>
+
+          <aside class="profile-card">
+            <div style="text-align:left">
+              <div style="font-weight:700">Ready to build?</div>
+              <div style="color:var(--muted);font-size:14px">I'm available for freelance & full-time embedded roles. Let's build something reliable together.</div>
+            </div>
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:13px;color:var(--muted)">Email</div>
+              <div style="font-weight:700">abzalshaik630434@gmail.com</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:6px">Location</div>
+              <div style="font-weight:700">Bangalore, India</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Shaik Abzal — Built with ❤️ and C. — <span style="color:var(--muted)">Designed for clarity & speed</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Typing effect
+    (function(){
+      const el = document.getElementById('typed');
+      const texts = ['Abzal — Embedded Developer','C & C++ • RTOS • IoT','Firmware, Reliability, Low-power'];
+      let idx = 0, i = 0, forward = true;
+      function step(){
+        const txt = texts[idx];
+        el.textContent = txt.slice(0,i) + (i%2? '|' : '');
+        if(forward){ i++; if(i>txt.length){ forward=false; setTimeout(step,900); return }}
+        else{ i--; if(i<0){ forward=true; idx=(idx+1)%texts.length; i=0 }}
+        setTimeout(step,80);
+      }
+      step();
+    })();
+
+    // Fade-in observer
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('show') }
+      })
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+    // Resume download
+    function downloadResume(){
+      const url = 'abzal_resume.pdf';
+      const a = document.createElement('a');
+      a.href = url; 
+      a.download = 'abzal_resume.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+  </script>
+</body>
+</html>
